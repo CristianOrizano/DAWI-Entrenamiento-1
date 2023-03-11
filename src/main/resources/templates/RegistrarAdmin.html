@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+
+<!--todas las etiquetas que maneja lo referencio a th-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <title>Pagina listado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+      <!--Jquery -->
+            <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <!--datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    
+    <!-- Font aweson-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" referrerpolicy="no-referrer" />
+     
+</head>
+<body>
+		<div class="container">	
+		  		<h1 class="text-center mt-5" style="color: red;">Registro de Administrador</h1>
+		                                   
+				<div class="row justify-content-center mt-3" >
+					<div class="col-sm-12 col-md-11 col-lg-10">
+					<div style="background: white;padding:15px;border: solid 15px orange;">
+					<form action="/admin/registrar" method="post">
+						<div class="row mb-4">
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">				
+							<input type="text" name="codigo" th:value="${ad.codigoAd}" hidden class="form-control" >
+							
+								<label for="formGroupExampleInput" class="form-label">Nombre</label>
+								<div class="input-group ">
+									<span class="input-group-text" id="basic-addon1"><i class="fa-sharp fa-solid fa-user"></i></span>
+									<input type="text" name="nombre" th:value="${ad.nombre}" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Nombre">
+					
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+							<label for="formGroupExampleInput" class="form-label">Apellido</label>
+							  <div class="input-group ">
+								<span class="input-group-text" id="basic-addon1"><i class="fa-sharp fa-solid fa-user"></i></span>
+								<input type="text" name="Apellido" th:value="${ad.Apellido}" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Apellido">
+							  </div>
+							</div>
+					
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+								<label for="formGroupExampleInput"  class="form-label">Direccion</label>
+								<div class="input-group ">
+								<span class="input-group-text" id="basic-addon1"><i class="fa-sharp fa-regular fa-diamond-turn-right"></i></span>
+								<input type="text" name="Direccion" th:value="${ad.Direccion}" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Direccion">
+					             </div>
+							</div>
+						</div>
+						<div class="row mb-4">
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+								<label for="formGroupExampleInput" class="form-label">Telefono</label>
+								<div class="input-group ">
+								<span class="input-group-text" id="basic-addon1"><i class="fa-sharp fa-solid fa-phone"></i></span>
+								<input type="text" name="telefono" th:value="${ad.telefono}" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Telefono">
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+								<label for="formGroupExampleInput" class="form-label">Sueldo</label>
+								<div class="input-group ">
+								<span class="input-group-text" id="basic-addon1"><i class="fa-sharp fa-solid fa-money-bill"></i> </span>
+								<input type="text" name="sueldo" th:value="${ad.sueldo}" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Sueldo">
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+								<label for="formGroupExampleInput" class="form-label">Sexo</label>
+									<select class="form-select" th:value="${ad.sexo}" name="sexo" aria-label="Default select example">
+									<option selected>Seleccione Sexo</option>
+									<option value="Masculino">Masculino</option>
+									<option value="Femenino">Femenino</option>
+									
+								</select>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+								<label for="formGroupExampleInput" class="form-label">Fecha Nacimiento</label>
+								<input type="date" class="form-control" th:value="${ad.fechanaci}" name="fecha" id="formGroupExampleInput" placeholder="Ingrese Fecha">
+							</div>
+							<div class="col-sm-12 col-md-6 col-lg-4 form-group">
+					
+								<label for="formGroupExampleInput" class="form-label">Ciudad</label>
+	
+								<select class="form-select" name="ciudad" aria-label="Default select example">
+									<option selected >Seleccione Ciudad</option>
+								
+									<option th:each="ad:${lisCiu}"
+										            th:utext="${ad.nombre}"
+											        th:value="${ad.codigoCiu}"></option>
+								
+								</select>
+							</div>
+					
+						</div>
+					
+					<button type="submit" class="btn btn-success">Guardar</button>
+					</form>
+					
+						</div>
+					</div>
+					
+				</div>
+				
+				
+		                       
+		                   
+	                        
+	                  	
+		   </div>
+
+
+
+  <script>
+          $(document).ready( function () {
+            $('#myTable').DataTable({
+	
+	        "language": {
+        	"url":"https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+            
+        }
+});
+         } );
+   
+ </script>
+
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
