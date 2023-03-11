@@ -114,7 +114,7 @@ public class AdministradorController {
 		int estado=0;
 		seradm.eliminar(estado,cod);
 		
-		
+		System.out.println("cambios de prueba segunda version");
 		
 		return "redirect:/admin/lista";
 	}
